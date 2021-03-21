@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "User")
@@ -25,8 +28,12 @@ public class User {
 	@Column(name = "Login", unique = true, nullable = false, length = 50)
 	private String login;
 	@Column(name = "Password", nullable = false)
+	@NotBlank(message = "Password is mandatory")
+	@Size(min = 8, max = 20)
 	private String password;
 	@Column(name = "Email", unique = true, nullable = false)
+	@NotBlank(message = "Email is mandatory")
+	@Email
 	private String email;
 	@Column(name = "FirstName")
 	private String firstName;

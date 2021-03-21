@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -58,7 +60,7 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> newUser(@RequestBody User newUser){
+	public ResponseEntity<?> newUser(@Valid @RequestBody User newUser){
 		if(newUser == null) {
 			throw new EmptyResourceException();
 		}
@@ -71,7 +73,7 @@ public class UserController {
 	}
 	
 	@PutMapping("{id}")
-	ResponseEntity<?> updateUser(@RequestBody User newUser, @PathVariable int id){
+	ResponseEntity<?> updateUser(@Valid @RequestBody User newUser, @PathVariable int id){
 		if(newUser == null) {
 			throw new EmptyResourceException();
 		}
